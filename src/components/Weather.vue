@@ -61,6 +61,8 @@
     const backgroundUrl = ref('');
 
     onMounted(() => {
+        isLoading.value = true
+
         let date = new Date()
         const weekday = new Intl.DateTimeFormat('en-GB', { weekday: 'long' }).format(date)
         const dayMonth = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long' }).format(date)
@@ -85,7 +87,7 @@
     })
 
     async function getCityWeather() {
-        isLoading.value = true
+
         let result = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${userPosition.latitude}&lon=${userPosition.longitude}&exclude=current&APPID=${WEATHER_APP_ID}`)
         let data =  await result.json()
 
